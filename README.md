@@ -2,20 +2,29 @@
 
 1. ~~input把用户 input 的内容绑定到 btn 上提交到一个函数上？~~
 [TUTORIAL](https://github.com/libregd/dictionary-app-in-react/issues/1#issuecomment-1114087077)
-2. InputWS 组件和Show 组件来说，InputWS组件通过input ，set了一个variable。这个variable怎么作为参数```{id}```传给另一个组件Show？
+2. **InputWS 组件和Show 组件来说，InputWS组件通过input ，set了一个variable。这个variable怎么作为参数```{id}```传给另一个组件Show？**
 ```ts
 // app.tsx
      <InputWS />
      <Show id={123}/>
 ```
+
+这个学了一下[unstated-next](https://github.com/jamiebuilds/unstated-next/blob/master/README-zh-cn.md)，example走了走，没解决问题，倒是知道之前用useState相当不规范了......
+
+ > 练习在unstated.tsx
+ > 尝试在app.tsx 搞了一下，没成。
+ 
 3. input框的输入匹配，输入的不全部是数字就提醒是错误的。
 【FormValidation.tsx】是提供了一个大致的处理，但是也有问题，不知道咋和已有的inpu二合一....
 
 4. 要考虑room是404 的状态，404了说明可能有输入错的数字，思路是根据fetch，看回复的status，没问题再考虑去拉取弹幕。
 
-报错是这样，感觉需要找点fetch教程看看.....
+~~报错是这样~~，感觉需要找点fetch教程看看.....
 > has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 
+后面发觉不是fetch的问题，而是bilibili返回的数据不对，任何直播间任何状态res.status 都是0
+
+[bilibili-API-collect 这里有个看起来不错的bili API](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/live/info.md)
 
 5. 通过bilibili-live-ws,拿到了数据，但是这个数据是，会不停的改和刷新的。
 

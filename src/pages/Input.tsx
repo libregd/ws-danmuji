@@ -2,24 +2,21 @@
 import { useState } from "react";
 
 const TestWS = () => {
-  var [roomID, setRoomId] = useState(0);
+  var [roomID, setRoomId] = useState("");
   var [urlStatus, setUrlStatus] = useState("ok?");
-function TestRoomStatus(id:number) {
+async function TestRoomStatus(id:string) {
+// 21395462 wutuobang
+try {
   const roomURL = 'https://live.bilibili.com/'+ id
-  fetch(roomURL)
-  .then((response) => {
-    if(!response.ok){
-      setUrlStatus("url noooot ok")
-    }else 
-      setUrlStatus("url is ok!")
-  })
-  .then((data) => {
-    setUrlStatus("url is oooook!")
-  })
-  .catch((error) => {
-    setUrlStatus("url not ok")
-    
-  });
+  const res = await fetch(roomURL,{mode:'no-cors'})
+  console.log('response.status: ', res.status); // 👉️ 200
+  console.log(res)
+} catch (error) {
+  setUrlStatus("url noooot ok,error")
+  console.log(error)
+}
+
+  
 } 
   return (
     <div className="box border-0">
@@ -39,7 +36,7 @@ function TestRoomStatus(id:number) {
                 className="input is-primary"
                 placeholder="enter room id, full id"
                 onChange={(e) => {
-                  setRoomId(+e.target.value);
+                  setRoomId(e.target.value);
                 }}
               />
             </div>

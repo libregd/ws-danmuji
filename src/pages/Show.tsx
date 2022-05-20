@@ -14,7 +14,7 @@ const Show = (props: Room) => {
   const live = new LiveWS(props.id);
   live.on("live", () => {
     live.on("msg", (data) => {
-      console.log(data);
+      // console.log(data);
       
     });
   });
